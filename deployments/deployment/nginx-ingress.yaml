@@ -12,9 +12,9 @@ spec:
     metadata:
       labels:
         app: nginx-ingress
-     #annotations:
-       #prometheus.io/scrape: "true"
-       #prometheus.io/port: "9113"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
     spec:
       serviceAccountName: nginx-ingress
       containers:
@@ -25,8 +25,8 @@ spec:
           containerPort: 80
         - name: https
           containerPort: 443
-       #- name: prometheus
-         #containerPort: 9113
+        - name: prometheus
+          containerPort: 9090
         securityContext:
           allowPrivilegeEscalation: true
           runAsUser: 101 #nginx
@@ -48,8 +48,8 @@ spec:
           - -nginx-configmaps=$(POD_NAMESPACE)/nginx-config
           - -default-server-tls-secret=$(POD_NAMESPACE)/default-server-secret
          #- -v=3 # Enables extensive logging. Useful for troubleshooting.
-         #- -report-ingress-status
-         #- -external-service=nginx-ingress
-         #- -enable-leader-election
-         #- -enable-prometheus-metrics
-         #- -global-configuration=$(POD_NAMESPACE)/nginx-configuration
+          - -report-ingress-status
+          - -external-service=nginx-ingress
+          - -enable-leader-election
+          - -enable-prometheus-metrics
+          - -global-configuration=$(POD_NAMESPACE)/nginx-configuration
