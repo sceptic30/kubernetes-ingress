@@ -17,4 +17,4 @@ spec:
     name: https
   selector:
     app: nginx-ingress
-# use externalTrafficPolicy: Local is you are using a cloud provider such as AWS,Google, etc
+# use externalTrafficPolicy: Local is you are using a cloud provider loadbalancer such as AWS,Google, etc
