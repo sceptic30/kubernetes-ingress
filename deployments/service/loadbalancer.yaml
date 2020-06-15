@@ -4,8 +4,8 @@ metadata:
   name: nginx-ingress
   namespace: nginx-ingress
 spec:
-  externalTrafficPolicy: Local
-  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  type: Cluster
   ports:
   - port: 80
     targetPort: 80
@@ -17,3 +17,4 @@ spec:
     name: https
   selector:
     app: nginx-ingress
+# use externalTrafficPolicy: Local is you are using a cloud provider such as AWS,Google, etc
